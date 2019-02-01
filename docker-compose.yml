@@ -1,0 +1,54 @@
+version: '3'
+
+#networks:
+#  frontend:
+#    ipam:
+#      config:
+#        - subnet: 172.20.0.0/24
+
+services:
+  mongo:
+    container_name: mongo
+    image: mongo:3.6.9  # 3.2.12
+    ports:
+      - "27017:27017"
+#    networks:
+#        frontend:
+#            ipv4_address: 172.20.0.6
+#  web:
+#    build: .
+#    command: python3 manage.py runserver 0.0.0.0:8000
+#    image: app
+#    volumes:
+#      - .:/usr/src/app
+#    ports:
+#      - "8000:8000"
+#    networks:
+#      frontend:
+#        ipv4_address: 172.20.0.7
+#    depends_on:
+#      - mongo
+#  create_user:
+#    image: app
+#    command: python3 manage.py shell -c "from django.contrib.auth.models import User; User.objects.create_superuser('admin', 'admin@example.com', 'admin')"
+#    volumes:
+#      - .:/usr/src/app
+#    links:
+#      - web
+#    depends_on:
+#      - web
+
+# TODO: networking not working
+#To setup (quick):
+#
+#Requires python3
+#
+#1. install docker - https://docs.docker.com/install/
+#
+#1. Bring up everything
+#```sh
+#docker-composer up
+#```
+#1. Go to http://127.0.0.1:8000/admin/
+#
+#1. Run `python3 manage.py generate_content -n 100000`
