@@ -20,7 +20,7 @@ class Content(models.Model):  # pragma: no cover
     content_elements = json.JSONField(default=[], null=False)
     metadata = json.JSONField(default={}, null=True)
     featured_media = json.JSONField(default=json_dumps({'image': ''}), null=True, blank=True)
-    client_id = json.JSONField(default={}, null=True)
+    client_id = models.TextField(null=False, blank=True)
     #license_id = models.ForeignKey('license_app.License', on_delete=models.CASCADE, blank=False, null=False,
     #                               db_column='license_id')
     origin_id = models.IntegerField(null=True)
