@@ -36,6 +36,7 @@ class ContentAdmin(admin.ModelAdmin):
         if has_perm:  # add or change
             form.base_fields['client_id'].label_from_instance = lambda obj: "{} {}".format(obj._id, obj.name)
             # form.base_fields['license_id'].label_from_instance = lambda obj: "{} {}".format(obj._id, obj.name)
+            form.base_fields['client_id'].widget = forms.Textarea()  # Use text area or get broken input
             form.base_fields['titles'].widget = forms.Textarea()
             form.base_fields['titles'].required = True
             form.base_fields['credits'].widget = forms.Textarea()

@@ -73,9 +73,9 @@ WSGI_APPLICATION = 'djongo_count_bug.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
-
+DATABASE_ROUTERS = ['db_routers.MyDatabaseRouter', ]
 DATABASES = {
-    'default': {
+    'mongo': {
         'ENGINE': 'djongo',
         'HOST': 'localhost',
         # 'HOST': 'mongo',
@@ -88,6 +88,10 @@ DATABASES = {
         'OPTIONS': {
             'connect_timeout': 3,
         }
+    },
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': 'default_db.sqlite',
     }
 }
 

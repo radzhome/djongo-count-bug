@@ -5,6 +5,7 @@ import datetime
 import json
 import math
 import time
+import copy
 
 from django.core.management.base import BaseCommand
 
@@ -92,8 +93,13 @@ class Command(BaseCommand):
 
         # Fastest way
         # More or less size will be by full chunks
-        s = time.time()
         chunks = int(math.ceil(num_docs/CHUNK_SIZE))
+
+        # contents = [Content(**CONTENT_TEMPLATE) for _ in range(CHUNK_SIZE)]
+
+        s = time.time()
+
+        print("NUmber of chunks is ", chunks)
         for chunk in range(chunks):
             Content.objects.bulk_create([Content(**CONTENT_TEMPLATE) for _ in range(CHUNK_SIZE)])
             print("Done inserting chunk {} of {}, time {}".format(chunk, chunks, round(time.time() -s, 3)))
