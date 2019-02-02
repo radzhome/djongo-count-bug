@@ -10,6 +10,7 @@ from django.conf import settings
 # from collections import OrderedDict
 import pymongo
 
+
 # djongo.base  get_connection_params
 def get_connection_params(settings_dict):
     """
@@ -80,30 +81,26 @@ class Command(BaseCommand):
         """
         num_docs = int(options['num_docs'])
 
-        # contents = Content.objects.all()[:num_docs]
-        # for content in contents:
-        #     print(content._id)
+        contents = Content.objects.all()[:num_docs]
+        for content in contents:
+            print(content._id)
 
         # for n in range(num_docs):
         #     contents = Content.objects.all()[n:1]
-        #     print(dir(contents))
-        #     print(contents.query)
-        #     # content = contents[0]
-        #     # print(content, 'see')
-        #     # input()
-        #     # print(n, content._id)
+        #     print(n, content._id)
 
+        # One at a time
         # content = Content.objects.all()[0:1]
         # for c in content:
         #     print(c._id)
-        client = pymongo.MongoClient(**CONN_PARAMS)
 
-        db = client[MONGO_SETTINGS['NAME']]
-        collection = db['content']
-
-        for n in range(num_docs):
-            doc = collection.find_one()
-            for f in JSON_FIELDS:
-                print(f, doc[f], type(doc[f]))
-                if not isinstance(doc[f], (list, dict)):
-                    print("oh ok"); input()
+        # Pymongo way
+        # client = pymongo.MongoClient(**CONN_PARAMS)
+        # db = client[MONGO_SETTINGS['NAME']]
+        # collection = db['content']
+        # for n in range(num_docs):
+        #     doc = collection.find_one()
+        #     for f in JSON_FIELDS:
+        #         print(f, doc[f], type(doc[f]))
+        #         if not isinstance(doc[f], (list, dict)):
+        #             raise Exception("No bueno")
